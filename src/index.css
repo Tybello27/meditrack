@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --canvas: #f2f6fc;
+  --canvas-2: #e9eff9;
+  --surface: #ffffff;
+  --surface-2: #f8fafd;
+  --surface-3: #eef3fa;
+  --line: #e4eaf4;
+  --line-strong: #d3dcea;
+  --ink: #0d1729;
+  --ink-2: #4a5a72;
+  --ink-3: #8c9bb2;
+  --ring-track: #e6ecf6;
+  --shadow-soft: 0 10px 30px -14px rgba(19, 41, 80, 0.28);
+  --shadow-card: 0 2px 6px -2px rgba(19, 41, 80, 0.08), 0 12px 30px -18px rgba(19, 41, 80, 0.24);
+  --shadow-float: 0 18px 40px -18px rgba(19, 41, 80, 0.42);
+}
+
+.dark {
+  --canvas: #060a13;
+  --canvas-2: #0b1120;
+  --surface: #111a2b;
+  --surface-2: #16203350;
+  --surface-3: #1b2740;
+  --line: #23324e;
+  --line-strong: #2d3f61;
+  --ink: #eef3fb;
+  --ink-2: #a7b6cd;
+  --ink-3: #6c7d99;
+  --ring-track: #1e2b45;
+  --shadow-soft: 0 10px 30px -14px rgba(0, 0, 0, 0.7);
+  --shadow-card: 0 2px 6px -2px rgba(0, 0, 0, 0.5), 0 16px 34px -20px rgba(0, 0, 0, 0.8);
+  --shadow-float: 0 18px 44px -18px rgba(0, 0, 0, 0.8);
+}
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Manrope", "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-canvas: var(--canvas);
+  --color-canvas-2: var(--canvas-2);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-track: var(--ring-track);
+
+  --color-brand: #3b82f6;
+  --color-brand-soft: #eaf2ff;
+  --color-mint: #10b981;
+  --color-lav: #8b5cf6;
+
+  --shadow-soft: var(--shadow-soft);
+  --shadow-card: var(--shadow-card);
+  --shadow-float: var(--shadow-float);
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+  input,
+  select,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+  select {
+    appearance: none;
+  }
+  input[type="time"]::-webkit-calendar-picker-indicator,
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.45;
+    cursor: pointer;
+  }
+  .dark input[type="time"]::-webkit-calendar-picker-indicator,
+  .dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.55;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .safe-top {
+    padding-top: max(env(safe-area-inset-top), 0.5rem);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .glass {
+    background-color: color-mix(in srgb, var(--surface) 78%, transparent);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+  }
+  .grain {
+    background-image: radial-gradient(
+        1200px 400px at 20% -10%,
+        rgba(59, 130, 246, 0.16),
+        transparent 60%
+      ),
+      radial-gradient(900px 380px at 100% 0%, rgba(139, 92, 246, 0.13), transparent 55%),
+      radial-gradient(800px 360px at 0% 100%, rgba(16, 185, 129, 0.1), transparent 60%);
+  }
+}
